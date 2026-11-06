@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asim Informative</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;font-family:Arial,sans-serif;
+ background:#080d1c;color:white;
+}
+header{
+ padding:22px 7%;display:flex;
+ justify-content:space-between;align-items:center;
+ background:#111a30;border-bottom:1px solid #29334b;
+}
+.logo{font-size:25px;font-weight:bold;color:#48d8ff}
+nav a{color:white;text-decoration:none;margin-left:20px}
+.hero{text-align:center;padding:75px 20px 40px}
+.hero h1{font-size:45px;margin-bottom:12px}
+.hero h1 span{color:#48d8ff}
+.hero p{color:#b7c3d8;font-size:17px}
+.container{
+ max-width:850px;margin:20px auto 60px;
+ padding:30px;background:#111a30;
+ border:1px solid #29334b;border-radius:18px;
+}
+label{display:block;margin:20px 0 8px;font-weight:bold}
+input,select,textarea{
+ width:100%;padding:14px;border-radius:9px;
+ border:1px solid #394966;background:#0a1224;
+ color:white;font-size:16px;
+}
+button{
+ padding:14px 22px;border:0;border-radius:9px;
+ background:#14b8df;color:#06101d;
+ font-weight:bold;font-size:16px;cursor:pointer;
+}
+button:hover{background:#55dcff}
+.generate{width:100%;margin-top:25px}
+#result{
+ display:none;margin-top:30px;padding:20px;
+ background:#0a1224;border-radius:12px;
+ line-height:1.8;white-space:pre-wrap;
+}
+footer{text-align:center;padding:25px;color:#9ba9c0}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">ASIM INFORMATIVE</div>
+ <nav>
+  <a href="#">Home</a>
+  <a href="#maker">Video Maker</a>
+ </nav>
+</header>
+
+<section class="hero">
+ <h1>Welcome to <span>Asim Informative</span></h1>
+ <p>Create amazing educational and informative video scripts.</p>
+ <p>Knowledge • Facts • Science • History</p>
+</section>
+
+<div class="container" id="maker">
+ <h2>🎬 Informative Video Maker</h2>
+ <p>Create your own video script in seconds.</p>
+
+ <label>Enter Video Topic</label>
+ <input id="topic" placeholder="Example: Amazing Facts About Space">
+
+ <label>Select Language</label>
+ <select id="language">
+  <option value="Urdu">Urdu</option>
+  <option value="English">English</option>
+  <option value="Roman Urdu">Roman Urdu</option>
+ </select>
+
+ <label>Video Category</label>
+ <select id="category">
+  <option>Science</option>
+  <option>History</option>
+  <option>Technology</option>
+  <option>Islamic Knowledge</option>
+  <option>Interesting Facts</option>
+  <option>Education</option>
+ </select>
+
+ <label>Video Duration</label>
+ <select id="duration">
+  <option>1 Minute</option>
+  <option>3 Minutes</option>
+  <option>5 Minutes</option>
+ </select>
+
+ <button class="generate" onclick="generateScript()">
+  ✨ Generate Video Script
+ </button>
+
+ <div id="result"></div>
+ <button id="copy" onclick="copyScript()" style="display:none;margin-top:15px">
+  Copy Script
+ </button>
+</div>
+
+<footer>
+ © 2026 Asim Informative | Made with ❤️
+</footer>
+
+<script>
+function generateScript(){
+ const topic=document.getElementById("topic").value.trim();
+ const lang=document.getElementById("language").value;
+ const category=document.getElementById("category").value;
+ const duration=document.getElementById("duration").value;
+
+ if(!topic){
+  alert("Please enter a video topic!");
+  return;
+ }
+
+ let script;
+
+ if(lang==="Urdu"){
+  script=`عنوان: ${topic}
+
+زمرہ: ${category}
+دورانیہ: ${duration}
+
+تعارف:
+السلام علیکم دوستو! آج ہم بات کریں گے ${topic} کے بارے میں۔
+
+اہم معلومات:
+آج کی اس ویڈیو میں ہم اس موضوع کے اہم پہلوؤں کو آسان الفاظ میں سمجھیں گے۔
+
+تفصیلات:
+1۔ اس موضوع کا تعارف اور بنیادی معلومات۔
+2۔ اس کی اہم خصوصیات اور دلچسپ حقائق۔
+3۔ ہماری روزمرہ زندگی میں اس کی اہمیت۔
+
+اختتام:
+امید ہے آپ کو یہ معلومات پسند آئی ہوں گی۔
+مزید دلچسپ معلومات کے لیے Asim Informative کو فالو کریں۔
+شکریہ!`;
+ }else if(lang==="English"){
+  script=`TITLE: ${topic}
+
+Category: ${category}
+Duration: ${duration}
+
+INTRODUCTION:
+Hello friends! Welcome to Asim Informative.
+Today we are going to explore ${topic}.
+
+MAIN CONTENT:
+1. Introduction and background.
+2. Important features and interesting facts.
+3. Why this topic matters in our lives.
+
+CONCLUSION:
+Thank you for watching!
+Follow Asim Informative for more educational videos.`;
+ }else{
+  script=`Title: ${topic}
+
+Assalam o Alaikum dosto!
+Aaj hum baat karein ge ${topic} ke bare mein.
+
+Important Points:
+1. Is topic ka taaruf.
+2. Is ki aham maloomat.
+3. Is ke dilchasp facts.
+
+Dosto umeed hai aap ko video pasand aayi hogi.
+Mazeed videos ke liye Asim Informative ko follow karein.
+Shukriya!`;
+ }
+
+ const result=document.getElementById("result");
+ result.textContent=script;
+ result.style.display="block";
+ document.getElementById("copy").style.display="inline-block";
+}
+
+function copyScript(){
+ const text=document.getElementById("result").textContent;
+ navigator.clipboard.writeText(text)
+ .then(()=>alert("Script copied successfully!"))
+ .catch(()=>alert("Please select and copy the script."));
+}
+</script>
+
+</body>
+</html>
